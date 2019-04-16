@@ -1,0 +1,37 @@
+#header {
+ background-color:black;
+ color:white;
+ text-align:center;
+ height: 10vh;
+ top: 0;
+ left: 0;
+ right: 0;
+ margin: 0 auto;
+}
+	#create{
+	float:center;
+margin:auto;
+text-align:center;
+
+width:10vw;}
+
+#buttons{
+float:center;
+margin:auto;
+text-align:center;
+
+width:10vw;}
+}
+.error {
+	color: #ff0000;
+	}
+	
+.errorblock{
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding:8px;
+	margin:16px;
+	}
+
+	

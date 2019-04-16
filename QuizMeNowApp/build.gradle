@@ -1,0 +1,85 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.8.RELEASE'
+	}
+
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.springframework:springloaded:1.2.8.RELEASE")
+		}
+}
+apply plugin: 'eclipse'
+apply plugin: 'groovy'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+
+group = 'portal'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+eclipse {
+	project {
+	  buildCommand 'org.eclipse.jdt.core.javabuilder'
+	  buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
+	  buildCommand 'org.springframework.ide.eclipse.core.springbuilder'
+	  buildCommand 'org.eclipse.wst.common.project.facet.core.builder'
+	  natures 'org.eclipse.jdt.core.javanature',
+		'org.eclipse.jdt.groovy.core.groovyNature',
+		  'org.eclipse.buildship.core.gradleprojectnature',
+		'org.springframework.ide.eclipse.core.springnature',
+		'org.eclipse.wst.common.project.facet.core.nature'
+	}
+}
+// tag::versions[]
+ext {
+	jasperVersion = '9.0.10'
+	groovyVersion = '2.4.15'
+	spockVersion = '1.1-groovy-2.4'
+}
+// end::versions[]
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'mysql:mysql-connector-java'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	// Spring Boot
+	
+	compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+	// JSP
+	compile("org.apache.tomcat.embed:tomcat-embed-jasper:$jasperVersion")
+	compile("javax.servlet:jstl:1.2")
+	// Bootstrap
+	compile("org.webjars:bootstrap:3.3.7")
+	// persistence
+	compile("javax.xml.bind:jaxb-api:2.3.0") // https://stackoverflow.com/a/48987120
+	testCompile("com.h2database:h2")
+	// security
+	// Spring Test
+	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+	testCompile('org.springframework.security:spring-security-test:5.0.10.RELEASE')
+//	testCompile('org.springframework.security:spring-security-test:4.0.0.RELEASE')
+	// Groovy
+	testCompile("org.codehaus.groovy:groovy-all:$groovyVersion")
+	// Spock
+	testCompile("junit:junit:4.12")
+	testCompile("org.spockframework:spock-core:$spockVersion")
+	testCompile "org.spockframework:spock-spring:$spockVersion"
+	testCompile("org.hamcrest:hamcrest-core:1.3")
+	testCompile("org.hamcrest:hamcrest-library:1.3")
+	// Spock-reports
+	testCompile( 'com.athaydes:spock-reports:1.3.1' ) {
+		transitive = false // this avoids affecting your version of Groovy/Spock
+	}
+	
+}
+
